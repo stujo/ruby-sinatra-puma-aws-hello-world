@@ -1,0 +1,26 @@
+postgresql: &postgresql
+  adapter: postgresql
+  username: <%=ENV['DB_USERNAME']%>
+  password: <%=ENV['DB_PASSWORD']%>
+  host:     <%=ENV['DB_HOST']%>
+  port:     <%=ENV['DB_PORT']%>
+  min_messages: ERROR
+  reconnect: false
+
+defaults: &defaults
+  pool: 5
+  timeout: 5000
+  encoding: utf8
+  <<: *postgresql
+
+development:
+  database: <%= APP_NAME %>_development
+  <<: *defaults
+
+test: &test
+  database: <%= APP_NAME %>_test
+  <<: *defaults
+
+production:
+  database: <%= APP_NAME %>
+  <<: *defaults

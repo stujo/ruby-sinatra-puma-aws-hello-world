@@ -1,0 +1,20 @@
+web:
+  build: .
+  ports:
+    - "3000:3001"
+  links:
+    - "db"
+  working_dir: "/usr/src/app"  
+  environment:
+    - DATABASE_HOST=db
+    - DATABASE_PORT=5434
+    - DATABASE_NAME=sinatra
+    - DATABASE_USER=sinatra
+    - DATABASE_PASSWORD=sinatra
+db:
+  image: "postgres"
+  environment:
+    - POSTGRES_USER=sinatra
+    - POSTGRES_PASSWORD=sinatra
+  ports:
+    - "5434:5432"

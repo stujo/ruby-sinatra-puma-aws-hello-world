@@ -1,13 +1,8 @@
-require "sinatra/base"
+require_relative "./config/environment"
 
-PORT = ENV['PORT'] || 3001
-BIND_ADDR = ENV['BIND_ADDR'] || '0.0.0.0'
-puts "STARTING SINATRA on #{BIND_ADDR} #{PORT}"
-
-
-class HelloWorld < Sinatra::Base
+class HelloWidgets < Sinatra::Base
   get '/' do
-    return 'Hello World!'
+    "Hello Widgets! #{ Widgets.all.pluck(:name).join(', ') }"
   end
 
   set :port, PORT
@@ -15,4 +10,5 @@ class HelloWorld < Sinatra::Base
 
 end
 
-HelloWorld.run!
+puts "Sinatra #{HelloWidgets.get :bind} #{HelloWidgets.get :port}"
+HelloWidgets.run!
