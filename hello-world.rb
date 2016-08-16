@@ -1,11 +1,12 @@
+port = ENV['PORT'] || 3002
+puts "STARTING SINATRA on port #{port}"
+
 require 'sinatra'
 
-class HelloWorld < Sinatra::Base
-  get '/' do
-    return 'Hello World!'
-  end
-end
+set :port, port
+set :bind, '0.0.0.0'
 
-if __FILE__ == $0
-  HelloWorld.run!
+
+get '/' do
+  return 'Hello World!'
 end
