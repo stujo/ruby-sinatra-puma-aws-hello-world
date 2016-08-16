@@ -1,12 +1,18 @@
-port = ENV['PORT'] || 3002
-puts "STARTING SINATRA on port #{port}"
+require "sinatra/base"
 
-require 'sinatra'
-
-set :port, port
-set :bind, '0.0.0.0'
+PORT = ENV['PORT'] || 3001
+BIND_ADDR = ENV['BIND_ADDR'] || '0.0.0.0'
+puts "STARTING SINATRA on #{BIND_ADDR} #{PORT}"
 
 
-get '/' do
-  return 'Hello World!'
+class HelloWorld < Sinatra::Base
+  get '/' do
+    return 'Hello World!'
+  end
+
+  set :port, PORT
+  set :bind, BIND_ADDR
+
 end
+
+HelloWorld.run!
