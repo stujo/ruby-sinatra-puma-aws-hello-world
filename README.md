@@ -116,3 +116,38 @@ Port ``5432`` on the ``db`` container is mapped to port ``5433`` on the host so 
       ports:
         + "5433:5432"
 
+
+#Deploy to Heroku
+
+*https://devcenter.heroku.com/articles/container-registry-and-runtime
+
+    $ heroku plugins:install heroku-container-registry
+
+Login to the registry
+
+    $ heroku container:login
+
+Create a new heroku app and associate it
+
+    $ heroku create
+       Creating app... done
+
+Build a fresh image and deploy it
+
+    $ heroku container:push web
+
+    $ heroku open
+
+##How to set the DATABASE_URL?
+
+*Add Heroku Postgres :: Database to the app on [https://dashboard.heroku.com/](https://dashboard.heroku.com/)
+
+*Check the DATABASE_URL in the env
+
+    $ heroku run env
+
+*Hit the app again! - The db just works :) but we didn't migrate yet...
+
+    $ heroku run rake db:migrate
+    $ heroku run rake db:seed
+
