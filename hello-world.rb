@@ -2,7 +2,7 @@ require_relative "./config/environment"
 
 class HelloWidgets < Sinatra::Base
   get '/' do
-    "Hello Widgets! #{ Widgets.all.pluck(:name).join(', ') }"
+    return "Hello Widgets! #{ Widget.all.pluck(:name).join(', ') }"
   end
 
   set :port, PORT
@@ -10,5 +10,5 @@ class HelloWidgets < Sinatra::Base
 
 end
 
-puts "Sinatra #{HelloWidgets.get :bind} #{HelloWidgets.get :port}"
+puts "Sinatra #{BIND_ADDR} #{PORT}"
 HelloWidgets.run!

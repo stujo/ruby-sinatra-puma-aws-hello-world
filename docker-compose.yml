@@ -6,15 +6,15 @@ web:
     - "db"
   working_dir: "/usr/src/app"  
   environment:
-    - DATABASE_HOST=db
-    - DATABASE_PORT=5434
-    - DATABASE_NAME=sinatra
-    - DATABASE_USER=sinatra
-    - DATABASE_PASSWORD=sinatra
+    - DB_HOST=db
+    - DB_PORT=5432
+    - DB_NAME=sinatra
+    - DB_USERNAME=sinatra
+    - DB_PASSWORD=sinatra
 db:
   image: "postgres"
   environment:
     - POSTGRES_USER=sinatra
     - POSTGRES_PASSWORD=sinatra
   ports:
-    - "5434:5432"
+    - "5433:5432"

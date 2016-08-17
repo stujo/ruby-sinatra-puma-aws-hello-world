@@ -10,6 +10,7 @@ gem 'sinatra-activerecord'
 
 gem 'puma'
 
+gem 'rake'
 
 
 
