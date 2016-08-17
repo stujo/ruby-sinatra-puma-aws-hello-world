@@ -151,3 +151,28 @@ Build a fresh image and deploy it
     $ heroku run rake db:migrate
     $ heroku run rake db:seed
 
+##Notes on Heroku's docker container
+
+    $ heroku run pwd
+    Running pwd on ⬢ xxx... up, run.5516
+    /usr/src/app
+
+We can see that the working directory comes from the ``Dockerfile``
+
+    $ heroku run ls -la
+    Running ls -la on ⬢ xxx... up, run.7749
+    total 44
+    drwx------ 5 u18060 dyno 4096 Aug 17 17:36 .
+    drwx------ 6 u18060 dyno 4096 Aug 17 17:36 ..
+    -rw------- 1 u18060 dyno   80 Aug 17 16:26 .dockerignore
+    -rw------- 1 u18060 dyno  294 Aug 16 18:55 Dockerfile
+    -rw------- 1 u18060 dyno  172 Aug 17 16:22 Gemfile
+    -rw------- 1 u18060 dyno  290 Aug 15 21:35 Gemfile.lock
+    -rw------- 1 u18060 dyno   78 Aug 17 16:14 Rakefile
+    drwx------ 2 u18060 dyno 4096 Aug 16 22:36 config
+    drwx------ 3 u18060 dyno 4096 Aug 16 22:46 db
+    -rw------- 1 u18060 dyno  264 Aug 16 22:57 hello-world.rb
+    drwx------ 2 u18060 dyno 4096 Aug 16 22:47 models
+
+We can see that files described in the ``.dockerignore`` file are not included in the container
+
